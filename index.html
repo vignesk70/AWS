@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>testing the show</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://rawgit.com/neo4j-contrib/neovis.js/master/dist/neovis.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <style type="text/css">
+                #viz {
+                    width: 900px;
+                    height: 700px;
+                    border: 1px solid lightgray;
+                    font: 22pt arial;
+                }
+            </style>
+
+            <script type="text/javascript">
+                var app = new Vue({
+                  el: '#ptag',
+                  data:{
+                    message: "this is a real message",
+                    popover:"this is pooppedover"
+                  }
+                })
+              var popapp = new Vue({
+                el: '#ptag',
+                data: {
+                  message:"this is popped over"
+                }
+              })
+            </script>
+            <script type="text/javascript">
+
+                    var viz;
+
+                    function draw() {
+                        var config = {
+                            container_id: "viz",
+                            server_url: "bolt://localhost:7687",
+                            server_user: "neo4j",
+                            server_password: "asdfgh123",
+                            labels: {
+                                "Instance": {
+                                    "caption": "name",
+                                    "size":"pagerank"
+                                },
+                                "Country":{
+                                  "caption":"name",
+                                  "size":"size"
+                                }
+                            },
+                            relationships: {
+                                "DEPENDS_ON": {
+                                    "thickness": "weight",
+                                    "caption": false
+                                },
+                                "SERVES": {
+
+                                  "thickness": "count",
+                                  "caption":"name",
+                                }
+
+                            },
+                            initial_cypher: "MATCH (n:Instance)-[r:DEPENDS_ON]->(m)<-[z:SERVES]-(c) RETURN *",
+                            arrows: true
+                        };
+
+                        viz = new NeoVis.default(config);
+                        viz.render();
+                    }
+                </script>
+  </head>
+  <body onload="draw()">
+
+    <div class="container-fluid">
+
+      <nav class="nav">
+        <a class="navbar-brand" href="#">Branding</a>
+        <a class="nav-link active" href="#">Active</a>
+        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">Another link</a>
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </nav>
+
+      <h1>Hello, world!</h1>
+       <div id="ptag">
+        <span v-bind:title="message">
+          <p v-bind:title="dt">  {{message}} </p>
+        </span>
+      </div>
+    </div>
+    Cypher query: <textarea rows="4" cols=50 id="cypher"></textarea><br>
+    <input type="submit" value="Submit" id="reload">
+    <input type="submit" value="Stabilize" id="stabilize">
+
+    <div id="viz"></div>
+
+    <!-- Bootstrap js required -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
+    <script>
+    $("#reload").click(function () {
+        var cypher = $("#cypher").val();
+        if (cypher.length > 3) {
+            viz.renderWithCypher(cypher);
+        } else {
+            console.log("reload");
+            viz.reload();
+        }
+    });
+    $("#stabilize").click(function () {
+        viz.stabilize();
+    })
+</script>
+
+  </body>
+</html>

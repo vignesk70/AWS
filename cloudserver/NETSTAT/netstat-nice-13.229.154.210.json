@@ -1,0 +1,55 @@
+[
+  {
+    "serverIP": "13.229.154.210",
+    "netstat": [
+      {
+        "Proto": "tcp",
+        "Recv-Q": "0",
+        "Send-Q": "0",
+        "Local Address": "0.0.0.0:22",
+        "Foreign Address": "0.0.0.0:*",
+        "State": "LISTEN"
+      },
+      {
+        "Proto": "tcp",
+        "Recv-Q": "0",
+        "Send-Q": "0",
+        "Local Address": "0.0.0.0:443",
+        "Foreign Address": "0.0.0.0:*",
+        "State": "LISTEN"
+      },
+      {
+        "Proto": "tcp",
+        "Recv-Q": "0",
+        "Send-Q": "0",
+        "Local Address": "0.0.0.0:8388",
+        "Foreign Address": "0.0.0.0:*",
+        "State": "LISTEN"
+      },
+      {
+        "Proto": "tcp",
+        "Recv-Q": "0",
+        "Send-Q": "0",
+        "Local Address": "0.0.0.0:80",
+        "Foreign Address": "0.0.0.0:*",
+        "State": "LISTEN"
+      },
+      {
+        "Proto": "tcp",
+        "Recv-Q": "0",
+        "Send-Q": "72",
+        "Local Address": "172.26.35.82:22",
+        "Foreign Address": "210.195.55.212:52244",
+        "State": "ESTABLISHED"
+      },
+      {
+        "Proto": "tcp6",
+        "Recv-Q": "0",
+        "Send-Q": "0",
+        "Local Address": ":::22",
+        "Foreign Address": ":::*",
+        "State": "LISTEN"
+      }
+    ]
+  }
+]
