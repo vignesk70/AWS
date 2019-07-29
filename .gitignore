@@ -103,6 +103,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+env_aws/
 
 # Spyder project settings
 .spyderproject
