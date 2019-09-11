@@ -1,0 +1,26 @@
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: rgba(128, 128, 0, 0.192);
+}
+
+.btn{
+    border-radius: 0 !important;
+}
+
+.cypher {
+    width: 100%;
+    border-color: gray !important;
+    box-shadow: 1px 1px 5px 1px #00000054
+}
+
+
+#viz{
+    width:100%;
+    height:500px !important;
+    border: 1px solid gray;
+    background-color: white;
+    box-shadow: 1px 1px 5px 1px #00000054
+}
+.viz .vis-network{
+    height: 500px;
+}

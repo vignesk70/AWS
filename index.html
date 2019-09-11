@@ -44,28 +44,44 @@
                             server_user: "neo4j",
                             server_password: "asdfgh123",
                             labels: {
-                                "Instance": {
+                                "Instances": {
                                     "caption": "name",
-                                    "size":"pagerank"
+                                    "size":""
                                 },
-                                "Country":{
-                                  "caption":"name",
+                                "Location":{
+                                  "caption":"availabilityZone",
+                                  "size":"size"
+                                },
+                                "External":{
+                                  "caption":"publicIpAddress",
                                   "size":"size"
                                 }
                             },
                             relationships: {
-                                "DEPENDS_ON": {
+                                "HOSTS": {
                                     "thickness": "weight",
                                     "caption": false
                                 },
-                                "SERVES": {
+                                "PORT_443": {
+
+                                  "thickness": "count",
+                                  "caption":"name",
+                                },
+                                "PORT_80": {
+
+                                  "thickness": "count",
+                                  "caption":"name",
+                                },
+                                ,
+                                "PORT_3306": {
 
                                   "thickness": "count",
                                   "caption":"name",
                                 }
 
+
                             },
-                            initial_cypher: "MATCH (n:Instance)-[r:DEPENDS_ON]->(m)<-[z:SERVES]-(c) RETURN *",
+                            initial_cypher: "MATCH (n) RETURN *",
                             arrows: true
                         };
 

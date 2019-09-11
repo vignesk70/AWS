@@ -76,7 +76,8 @@ with open(path+'lightsail-merge.json') as json_file:
             # print('regionName: {}'.format( p['location']['regionName']))
 
             location = Node("Location",availabilityZone=p['location']['availabilityZone'],regionName=p['location']['regionName'])
-            instance = Node("Instances",name=p['name'], privateIpAddress=p['privateIpAddress'],publicIpAddress=p['publicIpAddress'])
+            instance = Node("Instances",name=p['name'], privateIpAddress=p['privateIpAddress'],publicIpAddress=p['publicIpAddress'],
+                stateCode=p['state']['code'],stateName=p['state']['name'])
             loc_ins = Relationship(location,"HOSTS",instance)
             graph.merge(location,"Location","availabilityZone")
             graph.merge(instance,"Instances","name")
